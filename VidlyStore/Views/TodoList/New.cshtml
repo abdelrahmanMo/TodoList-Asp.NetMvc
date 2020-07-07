@@ -1,0 +1,52 @@
+﻿@model VidlyStore.Models.task
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+<form id="TodoListForm" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label>Note</label>
+
+        <input id="note" name="note" required type="text" name="note" value="" class="form-control" />
+
+    </div>
+    <div class="form-group">
+        <label for="Tdate" class="col-2 col-form-label">Task Date</label>
+        <div class="col-10">
+            <input class="form-control" required type="date" name="Tdate" value="2011-08-19" id="Tdate">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Ttime" class="col-2 col-form-label">Task Time</label>
+        <div class="col-10">
+            <input class="form-control" required type="time" name="Ttime" value="13:45:00" id="Ttime">
+        </div>
+    </div>
+
+    <div class="custom-file mb-3">
+        <input type="file" class="custom-file-input" id="customFile" required name="filename">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <ul id="images" class="list-group"></ul>
+        </div>
+    </div>
+
+
+    <button class="btn btn-primary">Submit</button>
+</form>
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/AppScript/TodoList/addFile.js"></script>
+
+}

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<VidlyStore.Models.viewModels.TaskViewModel>
+@{
+    ViewBag.Title = "Tasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@(Model.Count() == 0? "There 's No Task Added yet"  : Model.First().task.TaskDate.ToString("M"))</h2>
+        <ol class="breadcrumb">
+         
+            <li class="active">
+                <a>Today</a>
+            </li>
+
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            @if (Model.Count() != 0)
+            {
+                foreach (var task in Model)
+                {
+                    TimeSpan now = DateTime.Now.TimeOfDay;
+                    int i = TimeSpan.Compare(task.task.TaskTime, now);
+                    <div class="col-md-3">
+                        <div class="ibox ">
+                            <div class="ibox-content product-box ">
+
+                                <div class="product-imitation">
+                                    <img src="@Url.Content(task.images[0].ImgPath)" width="250" height="100" class="card-img-top" width="">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price @(i == -1 ? "taskOver" : "")">
+                                        @{ DateTime time = DateTime.Today.Add(task.task.TaskTime); }
+                                        @time.ToString("hh:mm tt")
+                                    </span>
+
+
+                                    @if (i == -1)
+                                    {
+                                        <h4 class="text-muted" style="color: red">Time is over For This Task </h4>
+                                    }
+
+                                    <div class="small m-t-xs">
+                                        @task.task.describtion
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        @Html.ActionLink("info", "Detail", "TodoList", new {id = task.task.Id}, new {@class = "btn btn-xs btn-outline btn-primary"})
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+

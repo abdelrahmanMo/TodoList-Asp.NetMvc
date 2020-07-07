@@ -1,0 +1,45 @@
+﻿@model VidlyStore.Models.viewModels.TaskViewModel
+
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.task.describtion</h2>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@Model.task.TaskDate.ToString("M")</h2>
+        <ol class="">
+            <li>
+                @{DateTime time = DateTime.Today.Add(Model.task.TaskTime);}
+               
+                <p>Task Time :  @time.ToString("hh:mm tt") </p>
+            </li>
+           
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div> 
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        @foreach (var images in Model.images)
+        {
+  
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+
+                        <div class="product-imitation">
+                            <img src="@Url.Content(images.ImgPath)" width="250" height="100" class="card-img-top" width="">
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
